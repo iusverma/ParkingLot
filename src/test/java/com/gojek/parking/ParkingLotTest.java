@@ -7,9 +7,6 @@ public class ParkingLotTest {
 
 	@Test
 	public void testParkingLot() {
-		ParkingLot plNotCreated = ParkingLot.getParkingLot();
-		Assert.assertNull(plNotCreated);
-
 		ParkingLot pl = ParkingLot.createParkingSlots(3);
 		Assert.assertEquals(pl.getParkingSlots().length,3);
 
