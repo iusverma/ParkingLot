@@ -16,14 +16,14 @@ public class ParkingLot {
             synchronized (ParkingLot.class) {
                 parkingLot = new ParkingLot(numberOfSlots);
             }
-        }        
+        }
         return parkingLot;
     }
     
     public static ParkingLot getParkingLot(){
         return parkingLot;
     }
-    
+
     public ParkingTicket park(Car car){
         ParkingTicket ticket = null;
         for (int i = 0; i < parkingSlots.length; i++) {
