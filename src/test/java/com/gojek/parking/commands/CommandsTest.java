@@ -1,9 +1,11 @@
 package com.gojek.parking.commands;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import com.gojek.parking.util.CommandUtil;
+import com.gojek.parking.util.ParkingUtil;
 
 public class CommandsTest {
 	@Test
@@ -82,7 +84,7 @@ public class CommandsTest {
 				.compareTo("Allocated slot number: 1"),0);
 
 		//Vacating the parking lot
-		vacateParkingLot(1);
+		ParkingUtil.vacateParkingLot();;
 	}
 
 	@Test
@@ -174,18 +176,13 @@ public class CommandsTest {
         Assert.assertEquals(response.compareTo("KA-01-HH-2701, SGX-9999C"), 0);
 
         //Vacating the parking lot
-        vacateParkingLot(3);
+        ParkingUtil.vacateParkingLot();
         CommandType status = new Status("status");
         System.out.println(status.execute());
    }
 
-   private void vacateParkingLot(int size){
-       String leaveStr = "leave X";
-       for(int i=0;i<size;i++){
-           int slot = i+1;
-           String templeaveStr = leaveStr.replace("X", Integer.toString(slot));
-           CommandType leave = CommandUtil.prepareCommand(templeaveStr);
-           leave.execute();
-       }
+   @AfterTest
+   private void cleanup(){
+       ParkingUtil.vacateParkingLot();
    }
 }

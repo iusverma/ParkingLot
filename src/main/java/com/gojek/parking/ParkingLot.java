@@ -11,10 +11,20 @@ public class ParkingLot {
         }
     }
 
+    /**
+     * createParkingSlots: This method will
+     * 1. create new ParkingLot instance
+     * 2. allocate memory for parkingSlots
+     * 3. resize the memory, if parkingSlots is empty
+     */
     public static ParkingLot createParkingSlots(int numberOfSlots){
         if(parkingLot == null){
             synchronized (ParkingLot.class) {
                 parkingLot = new ParkingLot(numberOfSlots);
+            }
+        } else {
+            if(isEmpty()){
+                parkingSlots = new Car[numberOfSlots];
             }
         }
         return parkingLot;
@@ -43,5 +53,13 @@ public class ParkingLot {
     
     public Car[] getParkingSlots() {
         return parkingSlots;
+    }
+
+    private static boolean isEmpty(){
+        for(int i=0;i<parkingSlots.length;i++){
+            if(parkingSlots[i] != null)
+                return false;
+        }
+        return true;
     }
 }
