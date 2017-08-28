@@ -1,0 +1,9 @@
+#!/bin/bash
+inputFile=$1
+if [ "$inputFile" = "" ]; then
+	echo "running java ParkingLot"
+	java -jar ParkingLot.jar
+else
+	echo "running java ParlingLot $1"
+	java -jar ParkingLot.jar file_inputs.txt
+fi
