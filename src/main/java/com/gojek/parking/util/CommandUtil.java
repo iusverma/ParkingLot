@@ -10,9 +10,16 @@ import com.gojek.parking.commands.SlotForCar;
 import com.gojek.parking.commands.SlotsForCarWithColour;
 import com.gojek.parking.commands.Status;
 import com.gojek.parking.enums.Command;
-
+/**
+ * CommandUtil for parsing a given command
+ */
 public class CommandUtil{
-    
+
+	/**
+	 * Parses input string and returns a valid command
+	 * @param input
+	 * @return command
+	 */
     public static CommandType prepareCommand(String input){
         CommandType command = null;
         if(input != null){
@@ -31,9 +38,13 @@ public class CommandUtil{
             } else if (input.toLowerCase().startsWith(Command.SLOT_NUMBERS_FOR_REGISTRATION_NUMBER.getKey())) {
                 command = new SlotForCar(input);
             }else{
+                /* If input is null return InvalidCommand
+                 */
                 command = new InvalidCommand();
             }
         }else{
+            /* If input is null return InvalidCommand
+             */
             command = new InvalidCommand();
         }
         return command;

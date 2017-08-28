@@ -4,6 +4,6 @@ if [ "$inputFile" = "" ]; then
 	echo "running java ParkingLot"
 	java -jar ParkingLot.jar
 else
-	echo "running java ParlingLot $1"
-	java -jar ParkingLot.jar file_inputs.txt
+	echo "running java ParkingLot $1"
+	java -jar ParkingLot.jar $1
 fi

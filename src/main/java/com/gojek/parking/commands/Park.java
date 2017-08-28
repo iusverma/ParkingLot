@@ -4,7 +4,9 @@ import com.gojek.parking.Car;
 import com.gojek.parking.ParkingLot;
 import com.gojek.parking.ParkingTicket;
 import com.gojek.parking.enums.Command;
-
+/**
+ * Park command
+ */
 public class Park extends CommandType{
     
     public Park(String input){
@@ -12,6 +14,9 @@ public class Park extends CommandType{
         super.parameter = input;
     }
 
+    /*
+     * @see com.gojek.parking.commands.CommandType#execute()
+     */
     @Override
     public String execute() {
         if (getParameter() == null) {
@@ -19,22 +24,28 @@ public class Park extends CommandType{
             return message;
         }
         String input[] = getParameter().split(" ");
-        System.out.println("Current command: "+currentCommand.toString());
+        /* Basic validation for park command
+         */
         if(input.length != 3){
             String message = "Invalid parameter list.";
             System.out.println(message);
             return message;
         }
 
+        /* Creating parking lot instance
+         */
         ParkingLot parkingLot = ParkingLot.getParkingLot();
         ParkingTicket parkingTicket = null;
-
         String carRegNum = input[1];
         String carColour = input[2];
+        /* Allocating parking
+         */
         if (parkingLot != null) {
             parkingTicket = parkingLot.park(new Car(carRegNum,carColour));
         }
 
+        /* Preparing Response
+         */
         StringBuilder message = new StringBuilder("");
         if (parkingTicket != null) {
             message.append("Allocated slot number: ")
@@ -42,7 +53,6 @@ public class Park extends CommandType{
         } else {
             message.append("Sorry, parking lot is full");
         }
-
         return message.toString();
     }
 
