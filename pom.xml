@@ -35,8 +35,8 @@
 <!-- 						<lineRate>40</lineRate> -->
 <!-- 						<branchRate>40</branchRate> -->
 						<!-- Project-wide thresholds -->
-						<totalLineRate>50</totalLineRate>
-						<totalBranchRate>50</totalBranchRate>
+						<totalLineRate>60</totalLineRate>
+						<totalBranchRate>60</totalBranchRate>
 					</check>
 				</configuration>
 				<executions>
